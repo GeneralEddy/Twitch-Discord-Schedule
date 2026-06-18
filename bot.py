@@ -1,10 +1,19 @@
 import os
+import sys
 import aiohttp
 import discord
 from discord.ext import tasks
 from dotenv import load_dotenv
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+
+# Prevent multiple instances running at the same time
+LOCK_FILE = "bot.lock"
+if os.path.exists(LOCK_FILE):
+    print("Bot is already running. Exiting.")
+    sys.exit(0)
+with open(LOCK_FILE, "w") as f:
+    f.write(str(os.getpid()))
 
 load_dotenv()
 
@@ -186,4 +195,8 @@ async def update_schedule():
     print(f"Posted and pinned new embed (id={message.id})")
 
 
-client.run(DISCORD_TOKEN)
+try:
+    client.run(DISCORD_TOKEN)
+finally:
+    if os.path.exists(LOCK_FILE):
+        os.remove(LOCK_FILE)
