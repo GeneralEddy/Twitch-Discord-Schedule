@@ -2,7 +2,7 @@
 
 A Discord bot that automatically posts and updates your Twitch stream schedule as a pinned embed in your Discord server. Updates every 30 minutes, shows live/offline status, and displays times in each viewer's local timezone.
 
-![Preview](https://raw.githubusercontent.com/GeneralEddy/Twitch-Discord-Schedule/main/preview.png)
+![Preview](https://raw.githubusercontent.com/GeneralEddy/Twitch-Discord-Schedule/main/Stream%20Schedule%20Bot.png)
 
 ## Features
 
