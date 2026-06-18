@@ -80,7 +80,7 @@ def to_ts(start_time):
 
 async def update_channel_topic(channel, live, segments):
     if live:
-        topic = "🔴 LIVE NOW • twitch.tv/generaleddy"
+        topic = f"🔴 LIVE NOW • twitch.tv/{TWITCH_CHANNEL}"
     elif segments:
         title = segments[0].get("title") or "Next stream"
         dt = datetime.fromisoformat(segments[0]["start_time"].replace("Z", "+00:00")).astimezone(UK_TZ)
