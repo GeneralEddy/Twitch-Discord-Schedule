@@ -12,7 +12,9 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 TWITCH_CLIENT_ID = os.getenv("TWITCH_CLIENT_ID")
 TWITCH_CLIENT_SECRET = os.getenv("TWITCH_CLIENT_SECRET")
-TWITCH_CHANNEL = os.getenv("TWITCH_CHANNEL", "generaleddy")
+TWITCH_CHANNEL = os.getenv("TWITCH_CHANNEL")
+if not TWITCH_CHANNEL:
+    raise ValueError("TWITCH_CHANNEL is not set in your .env file")
 
 MESSAGE_ID_FILE = "message_id.txt"
 UK_TZ = ZoneInfo("Europe/London")
