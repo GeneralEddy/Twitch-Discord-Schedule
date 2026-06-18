@@ -85,16 +85,22 @@ The bot will post and pin the schedule embed on first run, then update it every 
 
 ## Auto-Start on Windows (Optional)
 
-To have the bot start automatically when you log in:
+This makes the bot start automatically every time you log into Windows — silently, with no terminal window. Once set up, you never need to manually run the bot again.
 
 1. Open Command Prompt as Administrator (right-click Start → Terminal (Admin))
-2. Run:
+2. Run the command below, replacing `C:\path\to\schedule-bot` with the actual path to your bot folder:
 
 ```
 schtasks /create /tn "DiscordScheduleBot" /tr "wscript.exe \"C:\path\to\schedule-bot\run_bot.vbs\"" /sc onlogon /delay 0001:00 /ru "%USERNAME%" /f
 ```
 
-Replace `C:\path\to\schedule-bot` with the actual path to your bot folder.
+3. To start it immediately without rebooting, run:
+
+```
+schtasks /run /tn "DiscordScheduleBot"
+```
+
+The bot will now run silently in the background every time you log in, updating your Discord embed every 30 minutes automatically.
 
 ---
 
