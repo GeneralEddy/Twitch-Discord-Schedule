@@ -183,7 +183,7 @@ async def on_ready():
     update_schedule.start()
 
 
-@tasks.loop(minutes=30)
+@tasks.loop(minutes=5)
 async def update_schedule():
     channel = client.get_channel(CHANNEL_ID)
     if channel is None:

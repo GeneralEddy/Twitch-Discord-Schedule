@@ -1,6 +1,6 @@
 # Twitch Schedule Discord Bot
 
-A Discord bot that automatically posts and updates your Twitch stream schedule as a pinned embed in your Discord server. Updates every 30 minutes, shows live/offline status, and displays times in each viewer's local timezone.
+A Discord bot that automatically posts and updates your Twitch stream schedule as a pinned embed in your Discord server. Updates every 5 minutes, shows live/offline status, and displays times in each viewer's local timezone.
 
 ![Preview](https://raw.githubusercontent.com/GeneralEddy/Twitch-Discord-Schedule/main/Stream%20Schedule%20Bot.png)
 
@@ -11,7 +11,7 @@ A Discord bot that automatically posts and updates your Twitch stream schedule a
 - 🕒 Discord timestamps — every viewer sees times in their own timezone
 - 🖼️ Automatically pulls your Twitch profile picture
 - 📌 One pinned message, edited in place — no spam
-- 🔁 Updates every 30 minutes automatically
+- 🔁 Updates every 5 minutes automatically
 - 📢 Updates channel topic with next stream info
 
 ---
@@ -79,7 +79,7 @@ pip install -r requirements.txt
 python bot.py
 ```
 
-The bot will post and pin the schedule embed on first run, then update it every 30 minutes automatically.
+The bot will post and pin the schedule embed on first run, then update it every 5 minutes automatically.
 
 ---
 
@@ -100,7 +100,7 @@ schtasks /create /tn "DiscordScheduleBot" /tr "wscript.exe \"C:\path\to\schedule
 schtasks /run /tn "DiscordScheduleBot"
 ```
 
-The bot will now run silently in the background every time you log in, updating your Discord embed every 30 minutes automatically.
+The bot will now run silently in the background every time you log in, updating your Discord embed every 5 minutes automatically.
 
 ---
 
