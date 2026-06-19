@@ -7,11 +7,36 @@ from dotenv import load_dotenv
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
-# Prevent multiple instances running at the same time
+# Prevent multiple instances running at the same time.
+# If the PID in the lock file isn't actually running (e.g. left over from a
+# shutdown that didn't clean up), treat it as stale and take over.
 LOCK_FILE = "bot.lock"
+
+
+def pid_is_running(pid):
+    try:
+        os.kill(pid, 0)
+        return True
+    except (OSError, ProcessLookupError):
+        return False
+    except AttributeError:
+        import ctypes
+        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+        handle = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+        if handle:
+            ctypes.windll.kernel32.CloseHandle(handle)
+            return True
+        return False
+
+
 if os.path.exists(LOCK_FILE):
-    print("Bot is already running. Exiting.")
-    sys.exit(0)
+    with open(LOCK_FILE) as f:
+        existing_pid = f.read().strip()
+    if existing_pid.isdigit() and pid_is_running(int(existing_pid)):
+        print("Bot is already running. Exiting.")
+        sys.exit(0)
+    print("Found stale lock file — removing it.")
+
 with open(LOCK_FILE, "w") as f:
     f.write(str(os.getpid()))
 
