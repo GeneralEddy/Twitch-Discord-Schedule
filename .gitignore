@@ -1,4 +1,5 @@
 .env
 message_id.txt
+bot.lock
 __pycache__/
 *.pyc
